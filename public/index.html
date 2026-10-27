@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en-IE">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PSYCHE MIRROR</title>
+  <meta name="description" content="A gothic, candlelit personality mirror in five realms. For self-reflection only: not a diagnosis. Everything stays in your browser.">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0d0a0b">
+  <meta name="referrer" content="no-referrer">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/cinzel-decorative-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to the mirror</a>
+
+  <div class="vignette" aria-hidden="true"></div>
+
+  <header class="masthead">
+    <svg class="ornament ornament--crest" viewBox="0 0 240 40" aria-hidden="true" focusable="false">
+      <path d="M0 20 H90 M150 20 H240" />
+      <path d="M90 20 q15 -14 30 0 q15 14 30 0" />
+      <circle cx="120" cy="20" r="4" />
+      <path d="M100 20 l-6 -5 M100 20 l-6 5 M140 20 l6 -5 M140 20 l6 5" />
+    </svg>
+    <h1 class="title">Psyche Mirror</h1>
+    <p class="subtitle">A candlelit glass in five realms &middot; for reflection, never diagnosis</p>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="disclaimer" aria-labelledby="disclaimer-title">
+      <h2 id="disclaimer-title" class="disclaimer__title">Before you gaze</h2>
+      <p>
+        <strong>PSYCHE MIRROR is for self-reflection and entertainment only.</strong>
+        It is not a psychological test, it is not a diagnosis, and it is not a substitute
+        for a qualified professional. It does not assess any mental-health condition.
+        If something is weighing on you, please talk to your GP or someone you trust.
+      </p>
+      <p class="disclaimer__privacy">
+        Your answers never leave this device: no accounts, no analytics, no server.
+        Progress is kept in your browser&rsquo;s local storage until you clear it.
+      </p>
+    </section>
+
+    <div class="progress" aria-live="polite">
+      <div class="progress__label">
+        <span>Candles lit</span>
+        <span id="progress-text">0 of 50</span>
+      </div>
+      <div class="progress__track" role="progressbar" id="progress-bar"
+           aria-label="Overall progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div class="progress__fill" id="progress-fill"></div>
+      </div>
+    </div>
+
+    <p class="announce" id="announce" role="status" aria-live="polite"></p>
+
+    <nav class="tabs-wrap" aria-label="Realms">
+      <div class="tabs" role="tablist" id="tablist" aria-label="The five realms and the reflection">
+        <!-- tabs rendered by app.js -->
+      </div>
+    </nav>
+
+    <div id="panels">
+      <!-- realm panels rendered by app.js -->
+    </div>
+
+    <section class="panel panel--results" id="panel-results" role="tabpanel"
+             aria-labelledby="tab-results" tabindex="0" hidden>
+      <header class="panel__header">
+        <p class="panel__numeral" aria-hidden="true">&#10022;</p>
+        <h2 class="panel__title">The Reflection</h2>
+        <p class="panel__trait">What the glass gives back</p>
+      </header>
+
+      <p class="results__empty" id="results-empty">
+        The glass is still dark. Answer at least five statements in any realm and
+        its reflection will begin to form here.
+      </p>
+
+      <div class="results" id="results" hidden>
+        <div class="charts">
+          <figure class="chart-card">
+            <figcaption>The Pentacle</figcaption>
+            <div class="chart-box chart-box--radar">
+              <canvas id="radar-chart" role="img" aria-label="Radar chart of your five realm scores"></canvas>
+            </div>
+          </figure>
+          <figure class="chart-card">
+            <figcaption>The Five Candles</figcaption>
+            <div class="chart-box chart-box--bar">
+              <canvas id="bar-chart" role="img" aria-label="Bar chart of your five realm scores"></canvas>
+            </div>
+          </figure>
+        </div>
+
+        <table class="score-table" id="score-table">
+          <caption class="visually-hidden">Your realm scores</caption>
+          <thead>
+            <tr><th scope="col">Realm</th><th scope="col">Trait</th><th scope="col">Score</th><th scope="col">Band</th><th scope="col">Answered</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+
+        <div class="readings" id="readings"></div>
+
+        <p class="results__note">
+          Scores run from 0 to 100 and describe only how you answered today, compared
+          with the middle of the scale &mdash; not with other people, and not with any
+          clinical norm. Moods shift; so may your reflection.
+        </p>
+      </div>
+
+      <div class="actions">
+        <button type="button" class="btn btn--primary" id="btn-pdf" disabled>
+          Seal it in a PDF
+        </button>
+        <button type="button" class="btn btn--ghost" id="btn-reset">
+          Clear my data
+        </button>
+      </div>
+      <p class="status" id="status" role="status" aria-live="polite"></p>
+    </section>
+
+    <aside class="support" id="support" hidden aria-labelledby="support-title">
+      <h2 id="support-title" class="support__title">Keep the candles lit</h2>
+      <p>
+        PSYCHE MIRROR is free and always will be. If it gave you a moment&rsquo;s
+        pleasant unease, you may leave whatever you like in the offering bowl.
+        Entirely optional; the mirror works just the same either way.
+      </p>
+      <a class="btn btn--primary" id="support-link" href="#" rel="noopener noreferrer" target="_blank">
+        Pay what you want (opens Stripe)
+      </a>
+    </aside>
+  </main>
+
+  <dialog class="confirm" id="confirm-reset" aria-labelledby="confirm-title">
+    <form method="dialog">
+      <h2 id="confirm-title">Extinguish every candle?</h2>
+      <p>This erases all your answers from this browser. It cannot be undone.</p>
+      <div class="confirm__actions">
+        <button class="btn btn--ghost" value="cancel" autofocus>Keep them</button>
+        <button class="btn btn--danger" value="confirm">Clear my data</button>
+      </div>
+    </form>
+  </dialog>
+
+  <footer class="footer">
+    <p>
+      Statements from the <a href="https://ipip.ori.org/" rel="noopener noreferrer">International Personality Item Pool</a>
+      (public domain). Charts by Chart.js, PDFs by jsPDF.
+    </p>
+    <p>&copy; 2026 Niall O&rsquo;Hara &middot; MIT licence &middot; Made in Skerries by candlelight</p>
+  </footer>
+
+  <noscript>
+    <p class="noscript">The mirror needs JavaScript to turn its pages. Nothing you do here is sent anywhere.</p>
+  </noscript>
+
+  <script src="vendor/chartjs/chart.umd.js" defer></script>
+  <script src="vendor/jspdf/jspdf.umd.min.js" defer></script>
+  <script src="js/config.js" defer></script>
+  <script src="js/realms.js" defer></script>
+  <script src="js/scoring.js" defer></script>
+  <script src="js/storage.js" defer></script>
+  <script src="js/charts.js" defer></script>
+  <script src="js/pdf.js" defer></script>
+  <script src="js/app.js" defer></script>
+</body>
+</html>

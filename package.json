@@ -1,0 +1,15 @@
+{
+  "name": "psyche-mirror",
+  "version": "1.0.0",
+  "description": "A gothic, candlelit personality self-reflection tool in five realms. For self-reflection only: not a diagnosis.",
+  "private": true,
+  "license": "MIT",
+  "author": "Niall O'Hara",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node scripts/serve.js",
+    "test": "node --test tests/*.test.js"
+  }
+}
